@@ -1,0 +1,61 @@
+<button class="btn btn-primary" (click)="showOrHide = !showOrHide">
+  Hide/show pictures
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">naziv</th>
+      <th scope="col">autor</th>
+      <th scope="col">opis</th>
+      <th scope="col" *ngIf="showOrHide">slika</th>
+      <th scope="col">cijena</th>
+      <th scope="col">datumIzdavanja</th>
+      <th scope="col">jezik</th>
+      <th scope="col">brojStranica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.id | number }}</td>
+      <td>{{ book.naziv | uppercase }}</td>
+      <td>{{ book.autor | uppercase }}</td>
+      <td>
+        <span *ngIf="book.showOpis">{{ book.opis | lowercase }}</span>
+        <button class="btn btn-primary" (click)="toggleOpis(book)">
+          show/hide
+        </button>
+      </td>
+      <td *ngIf="showOrHide">
+        <img
+          *ngIf="book.slika"
+          [src]="book.slika"
+          width="50"
+          [style.width.px]="imageWidth"
+          alt="opis"
+        />
+        <img
+          *ngIf="!book.slika"
+          src="assets/images/slika.jpg"
+          width="50"
+          [style.width.px]="imageWidth"
+          alt="opis"
+        />
+      </td>
+      <td>{{ book.cijena | currency : "GBP" : true : "1.2-2" }}</td>
+      <td>{{ book.datumIzdavanja | date : "yyyy" }}</td>
+      <td>{{ book.jezik | uppercase }}</td>
+      <td *ngIf="book.brojStranica > 200" style="background-color: orange">
+        {{ book.brojStranica | number }}
+      </td>
+
+      <td
+        *ngIf="book.brojStranica > 100 && book.brojStranica < 200"
+        style="background-color: blue"
+      >
+        {{ book.brojStranica | number }}
+      </td>
+    </tr>
+  </tbody>
+</table>
