@@ -1,19 +1,19 @@
-<button class="btn btn-primary" (click)="showOrHide = !showOrHide">
-  Hide/show pictures
-</button>
-
-<table class="table">
-  <thead>
+<div class="bg-dark">
+<h3 class="h3">List of books 
+  <button class="btn btn-dark" (click)="showOrHide = !showOrHide">Hide/Show pictures</button>
+</h3>
+<table class="table table-dark">
+  <thead class="thead">
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">naziv</th>
-      <th scope="col">autor</th>
-      <th scope="col">opis</th>
-      <th scope="col" *ngIf="showOrHide">slika</th>
-      <th scope="col">cijena</th>
-      <th scope="col">datumIzdavanja</th>
-      <th scope="col">jezik</th>
-      <th scope="col">brojStranica</th>
+      <th scope="col">ID</th>
+      <th scope="col">Naziv</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Opis</th>
+      <th scope="col" *ngIf="showOrHide">Slika</th>
+      <th scope="col">Cijena</th>
+      <th scope="col">Datum Izdavanja</th>
+      <th scope="col">Jezik</th>
+      <th scope="col">Broj Stranica</th>
     </tr>
   </thead>
   <tbody>
@@ -23,8 +23,8 @@
       <td>{{ book.autor | uppercase }}</td>
       <td>
         <span *ngIf="book.showOpis">{{ book.opis | lowercase }}</span>
-        <button class="btn btn-primary" (click)="toggleOpis(book)">
-          show/hide
+        <button class="btn btn-secondary" (click)="toggleOpis(book)">
+          Show/Hide
         </button>
       </td>
       <td *ngIf="showOrHide">
@@ -46,16 +46,16 @@
       <td>{{ book.cijena | currency : "GBP" : true : "1.2-2" }}</td>
       <td>{{ book.datumIzdavanja | date : "yyyy" }}</td>
       <td>{{ book.jezik | uppercase }}</td>
-      <td *ngIf="book.brojStranica > 200" style="background-color: orange">
+      <td *ngIf="book.brojStranica > 200" style="background-color: red">
         {{ book.brojStranica | number }}
       </td>
-
       <td
         *ngIf="book.brojStranica > 100 && book.brojStranica < 200"
-        style="background-color: blue"
+        style="background-color: greenyellow"
       >
         {{ book.brojStranica | number }}
       </td>
     </tr>
   </tbody>
 </table>
+</div>
